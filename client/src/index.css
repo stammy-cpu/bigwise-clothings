@@ -9,45 +9,39 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   
-  /* Minimalist Monochromes */
-  --color-background: hsl(0 0% 100%);
-  --color-foreground: hsl(0 0% 3.9%);
+  /* Deep Purple Theme */
+  --color-background: hsl(265 40% 10%); /* Deep Purple */
+  --color-foreground: hsl(0 0% 100%);
   
-  --color-card: hsl(0 0% 100%);
-  --color-card-foreground: hsl(0 0% 3.9%);
+  --color-card: hsl(265 30% 15%);
+  --color-card-foreground: hsl(0 0% 100%);
   
-  --color-popover: hsl(0 0% 100%);
-  --color-popover-foreground: hsl(0 0% 3.9%);
+  --color-popover: hsl(265 30% 15%);
+  --color-popover-foreground: hsl(0 0% 100%);
   
-  --color-primary: hsl(0 0% 9%);
-  --color-primary-foreground: hsl(0 0% 98%);
+  --color-primary: hsl(270 60% 50%); /* Vibrant Purple */
+  --color-primary-foreground: hsl(0 0% 100%);
   
-  --color-secondary: hsl(0 0% 96.1%);
-  --color-secondary-foreground: hsl(0 0% 9%);
+  --color-secondary: hsl(240 50% 60%); /* Blue-ish Purple */
+  --color-secondary-foreground: hsl(0 0% 100%);
   
-  --color-muted: hsl(0 0% 96.1%);
-  --color-muted-foreground: hsl(0 0% 45.1%);
+  --color-muted: hsl(265 20% 30%);
+  --color-muted-foreground: hsl(265 10% 80%);
   
-  --color-accent: hsl(0 0% 96.1%);
-  --color-accent-foreground: hsl(0 0% 9%);
+  --color-accent: hsl(280 70% 40%);
+  --color-accent-foreground: hsl(0 0% 100%);
   
-  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive: hsl(0 62.8% 30.6%);
   --color-destructive-foreground: hsl(0 0% 98%);
 
-  --color-border: hsl(0 0% 89.8%);
-  --color-input: hsl(0 0% 89.8%);
-  --color-ring: hsl(0 0% 3.9%);
+  --color-border: hsl(265 30% 25%);
+  --color-input: hsl(265 30% 25%);
+  --color-ring: hsl(270 60% 50%);
   
-  --color-chart-1: hsl(12 76% 61%);
-  --color-chart-2: hsl(173 58% 39%);
-  --color-chart-3: hsl(197 37% 24%);
-  --color-chart-4: hsl(43 74% 66%);
-  --color-chart-5: hsl(27 87% 67%);
+  --font-sans: 'Poppins', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
   
-  --font-sans: 'Inter', sans-serif;
-  --font-serif: 'Playfair Display', serif;
-  
-  --radius: 0rem; /* Sharp edges for high fashion feel */
+  --radius: 0.5rem;
 }
 
 @layer base {
@@ -56,32 +50,24 @@
   }
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    background-image: radial-gradient(circle at top right, hsl(270 50% 15%), hsl(265 40% 10%));
+    min-height: 100vh;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    @apply font-heading font-bold;
   }
 }
 
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom Utilities for that "Elevated" feel */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400;
   }
   
-  .img-hover-zoom {
-    @apply overflow-hidden transition-all duration-500 ease-in-out;
+  .bg-gradient-primary {
+    @apply bg-gradient-to-br from-[hsl(265_40%_15%)] to-[hsl(265_40%_10%)];
   }
   
-  .img-hover-zoom img {
-    @apply transition-transform duration-700 ease-out;
-  }
-  
-  .img-hover-zoom:hover img {
-    @apply scale-105;
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
   }
 }

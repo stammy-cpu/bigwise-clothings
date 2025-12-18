@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, ShoppingBag, Search } from "lucide-react";
+import { Menu, X, ShoppingBag, Search, User, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -28,14 +28,14 @@ export function Navbar() {
     <nav
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent",
-        scrolled || isOpen ? "bg-white/90 backdrop-blur-md border-border py-4" : "bg-transparent py-6"
+        scrolled || isOpen ? "bg-[#1a1025]/90 backdrop-blur-md border-white/10 py-4 shadow-lg shadow-purple-900/10" : "bg-transparent py-6"
       )}
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-primary"
+            className="md:hidden p-2 text-white"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -43,13 +43,13 @@ export function Navbar() {
 
           {/* Desktop Left Links */}
           <div className="hidden md:flex gap-8">
-            {navLinks.slice(0, 2).map((link) => (
+            {navLinks.map((link) => (
               <Link 
                 key={link.name} 
                 href={link.href}
                 className={cn(
-                  "text-sm uppercase tracking-widest hover:text-primary/60 transition-colors",
-                  location === link.href ? "font-bold" : "font-medium"
+                  "text-sm uppercase tracking-wider hover:text-purple-300 transition-colors font-medium",
+                  location === link.href ? "text-purple-300 font-bold" : "text-white/90"
                 )}
               >
                 {link.name}
@@ -60,51 +60,51 @@ export function Navbar() {
           {/* Logo */}
           <Link 
             href="/"
-            className="text-2xl md:text-3xl font-serif font-bold tracking-tighter text-center absolute left-1/2 -translate-x-1/2 md:static md:transform-none"
+            className="text-2xl md:text-3xl font-heading font-extrabold tracking-tighter text-center absolute left-1/2 -translate-x-1/2 md:static md:transform-none bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-white"
           >
             BIGWISE
           </Link>
 
           {/* Desktop Right Links */}
-          <div className="hidden md:flex gap-8 items-center">
-            {navLinks.slice(2).map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.href}
-                className={cn(
-                  "text-sm uppercase tracking-widest hover:text-primary/60 transition-colors",
-                  location === link.href ? "font-bold" : "font-medium"
-                )}
-              >
-                {link.name}
+          <div className="hidden md:flex gap-6 items-center">
+            <Link href="/auth">
+              <User className="w-5 h-5 cursor-pointer text-white/90 hover:text-purple-300 transition-colors" />
+            </Link>
+            <Link href="/wishlist">
+               <Heart className="w-5 h-5 cursor-pointer text-white/90 hover:text-purple-300 transition-colors" />
+            </Link>
+            <div className="relative">
+              <Link href="/cart">
+                <ShoppingBag className="w-5 h-5 cursor-pointer text-white/90 hover:text-purple-300 transition-colors" />
+                <span className="absolute -top-2 -right-2 bg-purple-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
               </Link>
-            ))}
-            <div className="flex items-center gap-4 ml-4 border-l pl-4 border-gray-200">
-              <Search className="w-5 h-5 cursor-pointer hover:text-primary/60 transition-colors" />
-              <ShoppingBag className="w-5 h-5 cursor-pointer hover:text-primary/60 transition-colors" />
             </div>
           </div>
 
           {/* Mobile Cart/Search (placeholder) */}
-          <div className="flex md:hidden gap-4">
+          <div className="flex md:hidden gap-4 text-white">
              <ShoppingBag className="w-5 h-5" />
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-border animate-in slide-in-from-top-5">
-            <div className="flex flex-col p-6 gap-6 items-center">
+          <div className="md:hidden absolute top-full left-0 w-full bg-[#1a1025] border-b border-white/10 animate-in slide-in-from-top-5">
+            <div className="flex flex-col p-6 gap-6 items-center text-white">
               {navLinks.map((link) => (
                 <Link 
                   key={link.name} 
                   href={link.href}
-                  className="text-lg uppercase tracking-widest font-medium"
+                  className="text-lg uppercase tracking-wider font-medium hover:text-purple-300"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
+              <div className="flex gap-6 mt-4 pt-6 border-t border-white/10 w-full justify-center">
+                 <Link href="/auth">Login</Link>
+                 <Link href="/cart">Cart (2)</Link>
+              </div>
             </div>
           </div>
         )}
