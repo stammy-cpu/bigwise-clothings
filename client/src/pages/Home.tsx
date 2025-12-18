@@ -7,13 +7,17 @@ import { MessageCircle, Star, ArrowRight, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import trendingImg1 from "@assets/generated_images/male_fashion_model_urban_style.png";
+import trendingImg2 from "@assets/generated_images/female_fashion_model_elegance.png";
+import trendingImg3 from "@assets/generated_images/fashion_accessories_still_life.png";
+import trendingImg4 from "@assets/generated_images/product_fashion_item_close-up.png";
 
 // Placeholder for Trending Items
 const trendingItems = [
-  { id: 1, name: "Urban Bomber", price: "$85", image: "bg-purple-900" },
-  { id: 2, name: "Velvet Dress", price: "$120", image: "bg-purple-800" },
-  { id: 3, name: "Street Hoodie", price: "$65", image: "bg-indigo-900" },
-  { id: 4, name: "Classic Tee", price: "$35", image: "bg-violet-900" },
+  { id: 1, name: "Urban Bomber", price: "$85", image: trendingImg1 },
+  { id: 2, name: "Velvet Dress", price: "$120", image: trendingImg2 },
+  { id: 3, name: "Street Hoodie", price: "$65", image: trendingImg3 },
+  { id: 4, name: "Classic Tee", price: "$35", image: trendingImg4 },
 ];
 
 export default function Home() {
@@ -47,20 +51,20 @@ export default function Home() {
                   transition={{ delay: i * 0.1 }}
                   className="group cursor-pointer"
                 >
-                  <div className={`aspect-[3/4] ${item.image} rounded-lg mb-4 overflow-hidden relative`}>
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                    {/* Placeholder content since we don't have images for all */}
-                    <div className="w-full h-full flex items-center justify-center text-white/20 font-heading text-4xl font-bold">
-                      BW
-                    </div>
-                    <div className="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <Button className="w-full bg-white text-black hover:bg-gray-200 font-bold rounded-full text-xs uppercase tracking-widest">
-                        Quick Add
-                      </Button>
-                    </div>
-                  </div>
-                  <h3 className="font-bold text-lg mb-1">{item.name}</h3>
-                  <p className="text-purple-300 font-medium">{item.price}</p>
+                  <Link href={`/product/${item.id}`}>
+                    <a className="block">
+                      <div className="aspect-[3/4] rounded-lg mb-4 overflow-hidden relative bg-gray-800 border border-white/10 group-hover:border-purple-500/50 transition-all">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                          <Button className="w-full bg-white text-black hover:bg-gray-200 font-bold rounded-none text-xs uppercase tracking-widest">
+                            Quick Add
+                          </Button>
+                        </div>
+                      </div>
+                      <h3 className="font-bold text-lg mb-1 group-hover:text-purple-300 transition-colors">{item.name}</h3>
+                      <p className="text-purple-300 font-medium">{item.price}</p>
+                    </a>
+                  </Link>
                 </motion.div>
               ))}
             </div>
@@ -100,7 +104,7 @@ export default function Home() {
             <Mail className="w-12 h-12 mx-auto mb-6 text-purple-300" />
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6">Join the Bigwise Circle</h2>
             <p className="max-w-xl mx-auto text-purple-200 mb-10 text-lg">
-              Be the first to know about new drops, exclusive events in Lagos & Ile-Ife, and member-only sales.
+              Be the first to know about new drops, exclusive events, and member-only sales.
             </p>
             <form className="max-w-md mx-auto flex gap-2" onSubmit={(e) => e.preventDefault()}>
               <input 

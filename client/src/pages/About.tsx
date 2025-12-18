@@ -2,7 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import studioImage from "@assets/generated_images/fashion_design_studio_interior.png";
-import { MapPin } from "lucide-react";
+import { Sparkles, Zap, Heart } from "lucide-react";
 
 export default function About() {
   return (
@@ -16,13 +16,13 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center mb-20"
           >
-            <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">Our Story</h1>
+            <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">The Bigwise Story</h1>
             <p className="text-xl text-purple-200 leading-relaxed font-light">
-              Born in Ile-Ife, refined in Lagos. Bigwise Clothings is a testament to the Nigerian spirit of excellence and style.
+              We believe fashion is more than just clothing. It's a statement, a lifestyle, and a reflection of who you are.
             </p>
           </motion.div>
 
-          {/* Locations Section */}
+          {/* Mission & Vision Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -47,65 +47,83 @@ export default function About() {
               className="space-y-8"
             >
               <div>
-                <h2 className="text-3xl font-heading font-bold mb-4">From Ife to the World</h2>
+                <h2 className="text-3xl font-heading font-bold mb-4">Who We Are</h2>
                 <p className="text-gray-300 leading-relaxed">
-                  What started as a small tailoring shop near OAU Campus in Ile-Ife has grown into a fashion powerhouse with presence in Lagos. We bridge the gap between traditional craftsmanship and contemporary urban aesthetics.
+                  Bigwise Clothings is a fashion-forward brand dedicated to creating premium, timeless pieces that celebrate individuality. We design for those who are confident, creative, and unafraid to express themselves through fashion.
                 </p>
               </div>
               
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                  <span className="block text-3xl font-bold text-purple-400 mb-1">2020</span>
-                  <span className="text-sm text-gray-400">Founded in Ile-Ife</span>
-                </div>
-                <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                  <span className="block text-3xl font-bold text-purple-400 mb-1">2023</span>
-                  <span className="text-sm text-gray-400">Expanded to Lagos</span>
-                </div>
-                <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                  <span className="block text-3xl font-bold text-purple-400 mb-1">5000+</span>
-                  <span className="text-sm text-gray-400">Happy Clients</span>
-                </div>
-                <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-                  <span className="block text-3xl font-bold text-purple-400 mb-1">100%</span>
-                  <span className="text-sm text-gray-400">Nigerian Made</span>
-                </div>
+              <div>
+                <h3 className="text-2xl font-heading font-bold mb-2">Our Philosophy</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Quality over quantity. Sustainability over trends. We believe in crafting clothing that lasts—both in durability and in style. Every piece tells a story of meticulous design and premium craftsmanship.
+                </p>
               </div>
             </motion.div>
           </div>
 
-          {/* Timeline Animation Mockup */}
+          {/* Core Values */}
           <div className="relative py-20 border-t border-white/10">
-            <h2 className="text-3xl font-heading font-bold text-center mb-16">The Journey</h2>
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-purple-900/50 -translate-x-1/2 hidden md:block" />
+            <h2 className="text-3xl font-heading font-bold text-center mb-16">Our Core Values</h2>
             
-            <div className="space-y-12 relative z-10">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-                <div className="md:w-1/2 md:text-right">
-                  <h3 className="text-2xl font-bold text-purple-300">Inception</h3>
-                  <p className="text-gray-400">First sketches in a dorm room at OAU.</p>
-                </div>
-                <div className="w-4 h-4 bg-purple-500 rounded-full shadow-[0_0_20px_rgba(168,85,247,0.5)] flex-shrink-0" />
-                <div className="md:w-1/2 text-gray-500 font-mono">2019</div>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="bg-white/5 border border-white/10 rounded-xl p-8 hover:border-purple-500/50 transition-colors"
+              >
+                <Sparkles className="w-12 h-12 text-purple-400 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Excellence</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  We pursue excellence in every detail. From fabric selection to final stitching, quality is non-negotiable.
+                </p>
+              </motion.div>
 
-              <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:flex-row-reverse">
-                <div className="md:w-1/2 md:text-left">
-                  <h3 className="text-2xl font-bold text-purple-300">First Store</h3>
-                  <p className="text-gray-400">Opening our flagship location in Ile-Ife.</p>
-                </div>
-                <div className="w-4 h-4 bg-purple-500 rounded-full shadow-[0_0_20px_rgba(168,85,247,0.5)] flex-shrink-0" />
-                <div className="md:w-1/2 md:text-right text-gray-500 font-mono">2021</div>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-white/5 border border-white/10 rounded-xl p-8 hover:border-purple-500/50 transition-colors"
+              >
+                <Zap className="w-12 h-12 text-purple-400 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Innovation</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  We blend timeless design with modern aesthetics, creating pieces that feel fresh yet enduring.
+                </p>
+              </motion.div>
 
-              <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-                <div className="md:w-1/2 md:text-right">
-                  <h3 className="text-2xl font-bold text-purple-300">Lagos Takeover</h3>
-                  <p className="text-gray-400">Expanding to Lekki to serve our growing clientele.</p>
-                </div>
-                <div className="w-4 h-4 bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,0.5)] flex-shrink-0" />
-                <div className="md:w-1/2 text-gray-500 font-mono">2023</div>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-white/5 border border-white/10 rounded-xl p-8 hover:border-purple-500/50 transition-colors"
+              >
+                <Heart className="w-12 h-12 text-purple-400 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Community</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  We celebrate our customers. You're not just buyers—you're part of the Bigwise family.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Stats Section */}
+          <div className="grid grid-cols-3 gap-6 mt-20">
+            <div className="bg-white/5 p-6 rounded-lg border border-white/10 text-center hover:border-purple-500/30 transition-colors">
+              <span className="block text-4xl font-bold text-purple-400 mb-2">5000+</span>
+              <span className="text-sm text-gray-400 uppercase tracking-widest">Happy Customers</span>
+            </div>
+            <div className="bg-white/5 p-6 rounded-lg border border-white/10 text-center hover:border-purple-500/30 transition-colors">
+              <span className="block text-4xl font-bold text-purple-400 mb-2">100%</span>
+              <span className="text-sm text-gray-400 uppercase tracking-widest">Premium Quality</span>
+            </div>
+            <div className="bg-white/5 p-6 rounded-lg border border-white/10 text-center hover:border-purple-500/30 transition-colors">
+              <span className="block text-4xl font-bold text-purple-400 mb-2">2025</span>
+              <span className="text-sm text-gray-400 uppercase tracking-widest">Year Founded</span>
             </div>
           </div>
         </div>
