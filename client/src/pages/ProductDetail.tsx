@@ -2,25 +2,34 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Star, Heart, Share2, MessageCircle, Phone, Truck, ShieldCheck, ArrowLeft } from "lucide-react";
-import { Link, useRoute } from "wouter";
-import menImage from "@assets/generated_images/male_fashion_model_urban_style.png"; // Placeholder
+import { Heart, Share2, MessageCircle, Phone, Truck, ShieldCheck, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "wouter";
+import jacketImg1 from "@assets/generated_images/premium_bomber_jacket_standalone.png";
+import jacketImg2 from "@assets/generated_images/denim_jacket_product_photo.png";
+import jacketImg3 from "@assets/generated_images/premium_bomber_jacket_standalone.png";
 import { cn } from "@/lib/utils";
 
 export default function ProductDetail() {
   const [selectedSize, setSelectedSize] = useState("M");
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   // Mock product data
   const product = {
     name: "Bigwise Urban Bomber Jacket",
     price: "$120.00",
-    description: "Designed for the streets of Lagos and beyond. This premium bomber jacket features water-resistant fabric, our signature purple lining, and heavy-duty hardware. Perfect for layering in any season.",
+    description: "Designed for the modern urban lifestyle. This premium bomber jacket features water-resistant fabric, our signature purple-tinted hardware, and impeccable tailoring. Perfect for layering in any season. The jacket combines street style aesthetics with refined craftsmanship.",
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: ["Purple", "Black", "Olive"],
-    images: [menImage, menImage, menImage], // Simulating gallery
-    reviews: 124,
-    rating: 4.8
+    images: [jacketImg1, jacketImg2, jacketImg3],
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % product.images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + product.images.length) % product.images.length);
   };
 
   return (
@@ -35,14 +44,35 @@ export default function ProductDetail() {
           </Link>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-            {/* Image Gallery */}
+            {/* Image Slider */}
             <div className="space-y-4">
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-white/5 border border-white/10 relative">
+              <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-white/5 border border-white/10 relative group">
                 <img 
-                  src={product.images[0]} 
+                  src={product.images[currentImageIndex]} 
                   alt={product.name} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain p-8 transition-opacity duration-500"
                 />
+                
+                {/* Navigation Buttons */}
+                <button 
+                  onClick={prevImage}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 hover:bg-purple-600 rounded-full text-white opacity-0 group-hover:opacity-100 transition-all z-10"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button 
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 hover:bg-purple-600 rounded-full text-white opacity-0 group-hover:opacity-100 transition-all z-10"
+                >
+                  <ChevronRight size={24} />
+                </button>
+
+                {/* Image Counter */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 px-3 py-1 rounded-full text-sm text-white">
+                  {currentImageIndex + 1} / {product.images.length}
+                </div>
+
+                {/* Wishlist Button */}
                 <button 
                   onClick={() => setIsWishlisted(!isWishlisted)}
                   className="absolute top-4 right-4 p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-colors"
@@ -50,32 +80,31 @@ export default function ProductDetail() {
                   <Heart size={20} className={cn("transition-colors", isWishlisted ? "fill-red-500 text-red-500" : "text-white")} />
                 </button>
               </div>
+
+              {/* Thumbnail Navigation */}
               <div className="grid grid-cols-3 gap-4">
                 {product.images.map((img, i) => (
-                  <div key={i} className="aspect-square rounded-lg overflow-hidden border border-white/10 cursor-pointer hover:border-purple-500 transition-colors">
-                    <img src={img} alt="" className="w-full h-full object-cover" />
-                  </div>
+                  <button
+                    key={i}
+                    onClick={() => setCurrentImageIndex(i)}
+                    className={cn(
+                      "aspect-square rounded-lg overflow-hidden border-2 transition-all",
+                      currentImageIndex === i 
+                        ? "border-purple-500 shadow-lg shadow-purple-600/20" 
+                        : "border-white/10 hover:border-purple-500/50"
+                    )}
+                  >
+                    <img src={img} alt="" className="w-full h-full object-contain p-2" />
+                  </button>
                 ))}
               </div>
             </div>
 
             {/* Product Info */}
             <div>
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h1 className="text-3xl md:text-4xl font-heading font-bold mb-2">{product.name}</h1>
-                  <div className="flex items-center gap-2 text-sm text-purple-300">
-                    <div className="flex text-yellow-400">
-                      <Star size={16} fill="currentColor" />
-                      <Star size={16} fill="currentColor" />
-                      <Star size={16} fill="currentColor" />
-                      <Star size={16} fill="currentColor" />
-                      <Star size={16} fill="currentColor" />
-                    </div>
-                    <span>({product.reviews} reviews)</span>
-                  </div>
-                </div>
-                <div className="text-3xl font-bold text-purple-400">{product.price}</div>
+              <div className="mb-8">
+                <h1 className="text-3xl md:text-4xl font-heading font-bold mb-2">{product.name}</h1>
+                <div className="text-3xl font-bold text-purple-400 mb-4">{product.price}</div>
               </div>
 
               <p className="text-gray-300 leading-relaxed mb-8 border-b border-white/10 pb-8">
@@ -141,7 +170,7 @@ export default function ProductDetail() {
               <div className="grid grid-cols-2 gap-4 mt-8">
                 <div className="flex items-center gap-3 text-sm text-gray-400">
                   <Truck size={20} className="text-purple-400" />
-                  <span>Free shipping to Lagos & Ile-Ife</span>
+                  <span>Fast & Secure Delivery</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-400">
                   <ShieldCheck size={20} className="text-purple-400" />
