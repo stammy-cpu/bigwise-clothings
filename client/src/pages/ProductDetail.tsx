@@ -36,7 +36,7 @@ export default function ProductDetail() {
     <div className="min-h-screen flex flex-col bg-[#1a1025] text-white font-sans">
       <Navbar />
       <main className="flex-grow pt-24 md:pt-32 pb-20 px-4">
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-7xl">
           <Link href="/collections">
             <a className="inline-flex items-center gap-2 text-purple-300 hover:text-white mb-8 text-sm font-medium transition-colors">
               <ArrowLeft size={16} /> Back to Collections

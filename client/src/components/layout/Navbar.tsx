@@ -31,7 +31,7 @@ export function Navbar() {
         scrolled || isOpen ? "bg-[#1a1025]/90 backdrop-blur-md border-white/10 py-4 shadow-lg shadow-purple-900/10" : "bg-transparent py-6"
       )}
     >
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto max-w-7xl px-4 md:px-6">
         <div className="flex items-center justify-between">
           {/* Mobile Menu Button */}
           <button

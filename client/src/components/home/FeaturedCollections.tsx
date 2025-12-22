@@ -33,7 +33,7 @@ const collections = [
 export function FeaturedCollections() {
   return (
     <section className="py-20 md:py-24 bg-gradient-to-b from-[#1a1025] to-[#251b35] px-4">
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
           <div>
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-2 md:mb-4">Curated Collections</h2>

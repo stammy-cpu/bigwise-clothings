@@ -24,7 +24,7 @@ export default function Collections() {
     <div className="min-h-screen flex flex-col bg-[#1a1025] text-white font-sans">
       <Navbar />
       <main className="flex-grow pt-24 md:pt-32 pb-12 px-4">
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-12 md:mb-16">
             <h1 className="text-3xl md:text-5xl font-heading font-bold mb-4">All Collections</h1>
             <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-xs md:text-sm uppercase tracking-widest font-medium text-gray-400">

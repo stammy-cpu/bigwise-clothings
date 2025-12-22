@@ -1,9 +1,10 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { ChatWidget } from "@/components/ChatWidget";
 import { Hero } from "@/components/home/Hero";
 import { FeaturedCollections } from "@/components/home/FeaturedCollections";
 import { InstagramFeed } from "@/components/home/InstagramFeed";
-import { MessageCircle, Star, ArrowRight, Mail, Camera } from "lucide-react";
+import { Star, ArrowRight, Mail, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
@@ -11,6 +12,8 @@ import trendingImg1 from "@assets/generated_images/male_fashion_model_urban_styl
 import trendingImg2 from "@assets/generated_images/female_fashion_model_elegance.png";
 import trendingImg3 from "@assets/generated_images/fashion_accessories_still_life.png";
 import trendingImg4 from "@assets/generated_images/product_fashion_item_close-up.png";
+import menImg from "@assets/stock_images/black_male_model_wit_21bad727.jpg";
+import womenImg from "@assets/stock_images/light-skinned_girl_w_07bef161.jpg";
 
 // Placeholder for Trending Items
 const trendingItems = [
@@ -32,7 +35,7 @@ export default function Home() {
         
         {/* Trending Section */}
         <section className="py-20 md:py-24 bg-gradient-to-b from-[#1a1025] to-[#251b35] px-4">
-          <div className="container mx-auto">
+          <div className="container mx-auto max-w-7xl">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-4">
               <h2 className="text-3xl md:text-4xl font-heading font-bold">Trending Now</h2>
               <Link href="/collections">
@@ -71,9 +74,74 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Shop by Gender Section */}
+        <section className="py-20 md:py-24 bg-gradient-to-b from-[#251b35] to-[#1a1025] px-4">
+          <div className="container mx-auto max-w-7xl">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-12 text-center">Shop By Category</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {/* Men Section */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="group cursor-pointer relative overflow-hidden rounded-2xl"
+              >
+                <Link href="/collections">
+                  <a className="block relative">
+                    <div className="aspect-[3/4] overflow-hidden">
+                      <img 
+                        src={menImg} 
+                        alt="Men's Collection" 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 group-hover:from-black/90 transition-all duration-300">
+                      <h3 className="text-3xl md:text-5xl font-heading font-bold mb-3">MEN</h3>
+                      <p className="text-gray-200 mb-4 text-sm md:text-base">Explore our latest men's collection</p>
+                      <div className="inline-flex items-center gap-2 text-sm uppercase tracking-widest font-bold text-purple-300 group-hover:text-white transition-colors">
+                        Shop Now <ArrowRight size={16} />
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              </motion.div>
+
+              {/* Women Section */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="group cursor-pointer relative overflow-hidden rounded-2xl"
+              >
+                <Link href="/collections">
+                  <a className="block relative">
+                    <div className="aspect-[3/4] overflow-hidden">
+                      <img 
+                        src={womenImg} 
+                        alt="Women's Collection" 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 group-hover:from-black/90 transition-all duration-300">
+                      <h3 className="text-3xl md:text-5xl font-heading font-bold mb-3">WOMEN</h3>
+                      <p className="text-gray-200 mb-4 text-sm md:text-base">Discover our women's collection</p>
+                      <div className="inline-flex items-center gap-2 text-sm uppercase tracking-widest font-bold text-purple-300 group-hover:text-white transition-colors">
+                        Shop Now <ArrowRight size={16} />
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
         {/* Become Our Model Section */}
         <section className="py-20 md:py-24 bg-gradient-to-r from-purple-900/30 to-blue-900/30 px-4">
-          <div className="container mx-auto">
+          <div className="container mx-auto max-w-7xl">
             <div className="max-w-3xl mx-auto text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -104,7 +172,7 @@ export default function Home() {
         {/* Testimonials */}
         <section className="py-20 md:py-24 relative overflow-hidden px-4">
           <div className="absolute inset-0 bg-purple-900/10 -skew-y-3 transform origin-left scale-110" />
-          <div className="container mx-auto relative z-10">
+          <div className="container mx-auto max-w-7xl relative z-10">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12 md:mb-16">What Our Clients Say</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {[
@@ -130,7 +198,7 @@ export default function Home() {
         {/* Newsletter */}
         <section className="py-20 md:py-24 bg-purple-900 text-white relative overflow-hidden px-4">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
-          <div className="container mx-auto text-center relative z-10">
+          <div className="container mx-auto max-w-7xl text-center relative z-10">
             <Mail className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-6 text-purple-300" />
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6">Join the Bigwise Circle</h2>
             <p className="max-w-xl mx-auto text-purple-200 mb-10 text-base md:text-lg">
@@ -153,18 +221,8 @@ export default function Home() {
       </main>
       <Footer />
       
-      {/* Floating Buttons */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
-        <a 
-          href="https://wa.me/1234567890" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 flex items-center justify-center"
-          aria-label="Chat on WhatsApp"
-        >
-          <MessageCircle size={24} fill="white" />
-        </a>
-      </div>
+      {/* Chat Widget */}
+      <ChatWidget />
     </div>
   );
 }

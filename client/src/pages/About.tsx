@@ -9,7 +9,7 @@ export default function About() {
     <div className="min-h-screen flex flex-col bg-[#1a1025] text-white font-sans">
       <Navbar />
       <main className="flex-grow pt-24 md:pt-32 pb-20 px-4">
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-7xl">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

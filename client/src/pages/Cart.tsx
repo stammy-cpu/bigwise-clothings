@@ -19,7 +19,7 @@ export default function Cart() {
     <div className="min-h-screen flex flex-col bg-[#1a1025] text-white font-sans">
       <Navbar />
       <main className="flex-grow pt-24 md:pt-32 pb-20 px-4">
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-7xl">
           <h1 className="text-2xl md:text-4xl font-heading font-bold mb-10">Your Cart</h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
