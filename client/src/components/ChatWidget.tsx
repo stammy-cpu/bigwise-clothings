@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { MessageCircle, X, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -36,14 +37,19 @@ export function ChatWidget() {
 
   return (
     <>
-      {/* Chat Widget Button */}
-      <button
+      {/* Chat Widget Button - Floating Animation */}
+      <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 flex items-center justify-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0, transition: { delay: 0.5 } }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ y: { duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" } }}
+        className="fixed bottom-6 right-6 z-50 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-lg shadow-purple-600/40 flex items-center justify-center"
         aria-label="Open chat"
       >
         <MessageCircle size={24} fill="white" />
-      </button>
+      </motion.button>
 
       {/* Chat Modal */}
       {isOpen && (
