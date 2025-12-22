@@ -8,12 +8,12 @@ import { Star, ArrowRight, Mail, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import trendingImg1 from "@assets/stock_images/black_male_model_wit_21bad727.jpg";
-import trendingImg2 from "@assets/stock_images/black_woman_wearing__23fd9ef7.jpg";
-import trendingImg3 from "@assets/stock_images/black_woman_wearing__55a24a41.jpg";
-import trendingImg4 from "@assets/stock_images/black_woman_wearing__61a6a8d8.jpg";
-import menImg from "@assets/stock_images/black_male_model_wit_21bad727.jpg";
-import womenImg from "@assets/stock_images/black_woman_wearing__be115d67.jpg";
+import trendingImg1 from "@assets/generated_images/premium_bomber_jacket_standalone.png";
+import trendingImg2 from "@assets/generated_images/elegant_velvet_dress_standalone.png";
+import trendingImg3 from "@assets/generated_images/street_hoodie_clothing_item.png";
+import trendingImg4 from "@assets/generated_images/classic_tee_shirt_product.png";
+import menImg from "@assets/generated_images/male_fashion_model_urban_style.png";
+import womenImg from "@assets/generated_images/female_fashion_model_elegance.png";
 
 // Placeholder for Trending Items
 const trendingItems = [
