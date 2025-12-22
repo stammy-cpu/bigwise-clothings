@@ -36,7 +36,7 @@ export function FeaturedCollections() {
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
           <div>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-2 md:mb-4">Curated Collections</h2>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-2 md:mb-4">Featured Collections</h2>
             <p className="text-purple-200 max-w-md text-sm md:text-base">Discover our latest arrivals, designed to elevate your everyday wardrobe with premium materials and timeless cuts.</p>
           </div>
           <Link href="/collections" className="hidden md:flex items-center gap-2 text-sm uppercase tracking-widest font-bold hover:text-purple-300 transition-colors">
