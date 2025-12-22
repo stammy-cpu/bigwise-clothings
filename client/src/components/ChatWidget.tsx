@@ -53,9 +53,9 @@ export function ChatWidget() {
 
       {/* Chat Modal */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-96 max-w-[calc(100vw-32px)] bg-[#1a1025] rounded-2xl border border-purple-500/30 shadow-2xl shadow-purple-600/20 flex flex-col h-96 z-50 animate-in slide-in-from-bottom-5">
+        <div className="fixed inset-0 sm:inset-auto sm:bottom-24 sm:right-6 sm:w-96 sm:h-96 sm:rounded-2xl w-full h-full sm:max-w-[calc(100vw-48px)] bg-[#1a1025] sm:border border-purple-500/30 shadow-2xl shadow-purple-600/20 flex flex-col z-50 animate-in slide-in-from-bottom-5 sm:rounded-2xl rounded-none">
           {/* Header */}
-          <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 rounded-t-2xl flex justify-between items-center">
+          <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-4 sm:px-6 py-4 sm:rounded-t-2xl flex justify-between items-center">
             <div>
               <h3 className="font-heading font-bold text-white">Bigwise Chat</h3>
               <p className="text-xs text-purple-100">We typically reply in minutes</p>
@@ -69,7 +69,7 @@ export function ChatWidget() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
             {messages.map((msg) => (
               <div
                 key={msg.id}
@@ -89,7 +89,7 @@ export function ChatWidget() {
           </div>
 
           {/* Input */}
-          <div className="border-t border-white/10 p-4 flex gap-2">
+          <div className="border-t border-white/10 p-3 sm:p-4 flex gap-2">
             <input
               type="text"
               value={inputValue}

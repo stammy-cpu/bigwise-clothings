@@ -28,19 +28,19 @@ export function Hero() {
           <h2 className="text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-4 text-purple-300">
             Est. 2025 • Ile-Ife & Lagos
           </h2>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold leading-tight mb-6">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold leading-tight mb-4 md:mb-6">
             Fashion for the <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Bold & Wise</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-lg leading-relaxed font-light">
+          <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 md:mb-10 max-w-lg leading-relaxed font-light">
             Elevate your wardrobe with our premium collection. Designed for those who lead, inspire, and stand out.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <Link href="/collections">
               <Button 
                 size="lg" 
-                className="bg-purple-600 hover:bg-purple-700 text-white rounded-full h-14 px-10 text-sm uppercase tracking-widest font-bold transition-all shadow-lg shadow-purple-600/30 hover:scale-105"
+                className="bg-purple-600 hover:bg-purple-700 text-white rounded-full h-12 sm:h-14 px-6 sm:px-10 text-xs sm:text-sm uppercase tracking-widest font-bold transition-all shadow-lg shadow-purple-600/30 hover:scale-105 w-full sm:w-auto"
               >
                 Shop Collection
               </Button>
@@ -49,7 +49,7 @@ export function Hero() {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-white/30 text-white hover:bg-white/10 hover:border-white rounded-full h-14 px-10 text-sm uppercase tracking-widest font-bold bg-transparent backdrop-blur-sm"
+                className="border-white/30 text-white hover:bg-white/10 hover:border-white rounded-full h-12 sm:h-14 px-6 sm:px-10 text-xs sm:text-sm uppercase tracking-widest font-bold bg-transparent backdrop-blur-sm w-full sm:w-auto"
               >
                 New Arrivals
               </Button>
