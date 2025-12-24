@@ -3,18 +3,31 @@ import { Menu, X, ShoppingBag, Search, User, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { loadUserFromStorage } from "@/lib/auth";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
+  const [user, setUser] = useState(loadUserFromStorage());
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    // Check for user changes
+    const checkUser = () => {
+      const currentUser = loadUserFromStorage();
+      setUser(currentUser);
+    };
+    window.addEventListener("storage", checkUser);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("storage", checkUser);
+    };
   }, []);
 
   const navLinks = [
@@ -23,6 +36,10 @@ export function Navbar() {
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
+
+  const adminLinks = user && user.role === "admin" ? [
+    { name: "Admin", href: "/admin" }
+  ] : [];
 
   return (
     <nav
@@ -43,7 +60,7 @@ export function Navbar() {
 
           {/* Desktop Left Links */}
           <div className="hidden md:flex gap-8">
-            {navLinks.map((link) => (
+            {[...navLinks, ...adminLinks].map((link) => (
               <Link 
                 key={link.name} 
                 href={link.href}
@@ -51,6 +68,7 @@ export function Navbar() {
                   "text-sm uppercase tracking-wider hover:text-purple-300 transition-colors font-medium",
                   location === link.href ? "text-purple-300 font-bold" : "text-white/90"
                 )}
+                data-testid={`nav-${link.name.toLowerCase()}`}
               >
                 {link.name}
               </Link>
@@ -91,7 +109,7 @@ export function Navbar() {
         {isOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-[#1a1025] border-b border-white/10 animate-in slide-in-from-top-5">
             <div className="flex flex-col p-6 gap-6 items-center text-white">
-              {navLinks.map((link) => (
+              {[...navLinks, ...adminLinks].map((link) => (
                 <Link 
                   key={link.name} 
                   href={link.href}

@@ -12,6 +12,7 @@ import ProductDetail from "@/pages/ProductDetail";
 import Cart from "@/pages/Cart";
 import Auth from "@/pages/Auth";
 import Wishlist from "@/pages/Wishlist";
+import Admin from "@/pages/Admin";
 
 function Router() {
   return (
@@ -24,6 +25,7 @@ function Router() {
       <Route path="/cart" component={Cart} />
       <Route path="/auth" component={Auth} />
       <Route path="/wishlist" component={Wishlist} />
+      <Route path="/admin" component={Admin} />
       <Route component={NotFound} />
     </Switch>
   );
