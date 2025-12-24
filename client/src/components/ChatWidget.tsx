@@ -13,26 +13,33 @@ export function ChatWidget() {
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
 
-    const userMessage = {
-      id: messages.length + 1,
-      text: inputValue,
-      sender: "user",
-      timestamp: new Date()
-    };
-
-    setMessages([...messages, userMessage]);
-    setInputValue("");
-
-    // Simulate bot response
-    setTimeout(() => {
-      const botMessage = {
-        id: messages.length + 2,
-        text: "Thanks for reaching out! Our team will get back to you shortly. 💜",
-        sender: "bot",
+    setMessages(prev => {
+      const userMessage = {
+        id: prev.length + 1,
+        text: inputValue,
+        sender: "user" as const,
         timestamp: new Date()
       };
-      setMessages(prev => [...prev, botMessage]);
-    }, 500);
+
+      const updatedMessages = [...prev, userMessage];
+
+      // Simulate bot response
+      setTimeout(() => {
+        setMessages(current => {
+          const botMessage = {
+            id: current.length + 1,
+            text: "Thanks for reaching out! Our team will get back to you shortly. 💜",
+            sender: "bot" as const,
+            timestamp: new Date()
+          };
+          return [...current, botMessage];
+        });
+      }, 600);
+
+      return updatedMessages;
+    });
+
+    setInputValue("");
   };
 
   return (
@@ -47,6 +54,7 @@ export function ChatWidget() {
         transition={{ y: { duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" } }}
         className="fixed bottom-6 right-6 z-50 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-lg shadow-purple-600/40 flex items-center justify-center"
         aria-label="Open chat"
+        data-testid="button-open-chat"
       >
         <MessageCircle size={24} fill="white" />
       </motion.button>
@@ -63,17 +71,19 @@ export function ChatWidget() {
             <button
               onClick={() => setIsOpen(false)}
               className="text-white hover:bg-white/20 p-1 rounded transition-colors"
+              data-testid="button-close-chat"
             >
               <X size={20} />
             </button>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4" data-testid="messages-container">
             {messages.map((msg) => (
               <div
                 key={msg.id}
                 className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+                data-testid={`message-${msg.sender}-${msg.id}`}
               >
                 <div
                   className={`max-w-xs px-4 py-2 rounded-lg text-sm ${
@@ -97,11 +107,13 @@ export function ChatWidget() {
               onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
               placeholder="Type your message..."
               className="flex-1 bg-white/5 border border-white/20 rounded-lg px-3 py-2 text-white text-sm placeholder:text-white/50 focus:outline-none focus:border-purple-400 transition-colors"
+              data-testid="input-chat-message"
             />
             <button
               onClick={handleSendMessage}
               disabled={!inputValue.trim()}
               className="bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white p-2 rounded-lg transition-colors flex items-center justify-center"
+              data-testid="button-send-message"
             >
               <Send size={16} />
             </button>
